@@ -1,0 +1,125 @@
+/* BookList Component Styles */
+.book-list-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.book-list-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+.book-list-title {
+  color: #2c3e50;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.book-list-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #4a90e2;
+  border-radius: 2px;
+}
+
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Filter styles */
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filter-section label {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.status-filter {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 0.95rem;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  background-color: white;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 150px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a90e2' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1rem) center;
+}
+
+.status-filter:hover {
+  border-color: #4a90e2;
+}
+
+.status-filter:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Empty state */
+.book-grid:empty::after {
+  content: 'No books added yet';
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 1000px) {
+  .book-grid > li {
+    flex: 0 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 650px) {
+  .book-grid > li {
+    flex: 0 1 100%;
+  }
+  
+  .book-list-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-section {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .status-filter {
+    width: 100%;
+  }
+}

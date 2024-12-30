@@ -1,0 +1,17 @@
+.star-container {
+  display: flex;
+  gap: 8px; /* Space between stars */
+}
+
+.star {
+  fill: lightgray; /* Default star fill color */
+  color: lightgray; /* Border color for consistency */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: fill 0.2s ease, color 0.2s ease; /* Smooth transition for both fill and border color */
+}
+
+.star:hover,
+.star-active {
+  fill: gold; /* Active or hovered star fill color */
+  color: gold; /* Border color for consistency */
+}

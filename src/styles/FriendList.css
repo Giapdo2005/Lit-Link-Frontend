@@ -1,0 +1,152 @@
+/* Friend List Component Styles */
+.friend-list-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.friend-list-title {
+  color: #2c3e50;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.friend-list-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #4a90e2;
+  border-radius: 2px;
+}
+
+.friend-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.friend-card {
+  flex: 0 1 calc(33.333% - 2rem);
+  min-width: 300px;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.friend-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.friend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.friend-name {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.friend-age {
+  background: #4a90e2;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.friend-books {
+  margin-top: 1rem;
+}
+
+.books-read-title {
+  color: #2c3e50;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-count {
+  color: #666;
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+
+.books-read-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #444;
+  transition: background-color 0.2s ease;
+}
+
+.book-item:hover {
+  background: #edf2f7;
+}
+
+.book-icon {
+  font-size: 1rem;
+}
+
+/* Empty state */
+.friend-grid:empty::after {
+  content: 'No friends added yet';
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 1000px) {
+  .friend-card {
+    flex: 0 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 650px) {
+  .friend-card {
+    flex: 0 1 100%;
+  }
+  
+  .friend-list-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}

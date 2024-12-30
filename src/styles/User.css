@@ -1,0 +1,151 @@
+.user-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 350px;
+}
+
+.user-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* User Header */
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  background-color: #4a90e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.books-count {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Books Section */
+.user-books {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.recent-books-title {
+  color: #2c3e50;
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.books-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #444;
+  transition: background-color 0.2s ease;
+}
+
+.book-item:hover {
+  background: #edf2f7;
+}
+
+.book-icon {
+  color: #4a90e2;
+  font-size: 1rem;
+}
+
+/* Action Buttons */
+.user-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.view-profile,
+.add-friend {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.view-profile {
+  background-color: white;
+  color: #4a90e2;
+  border: 1px solid #4a90e2;
+}
+
+.view-profile:hover {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.add-friend {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+}
+
+.add-friend:hover {
+  background-color: #357abd;
+}
+
+/* Focus States */
+.view-profile:focus,
+.add-friend:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .user-card {
+    max-width: 100%;
+  }
+
+  .user-actions {
+    flex-direction: column;
+  }
+}

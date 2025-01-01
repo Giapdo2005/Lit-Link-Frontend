@@ -122,7 +122,7 @@ export const deleteFriend = async (userId, friendId) => {
 // check if user exists
 export const checkUser = async (email) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/users/check`, {
+    const response = await axios.post(`${API_BASE_URL}/users/check`, {
       email,
     });
     return response.data.message;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { handleLogin, handleSignup } from "../api";
 import "../styles/Home.css";
 
@@ -136,7 +137,9 @@ export function Home({ loggedIn }) {
         {isLoginMode ? (
           <p className="footer-text">
             Forgot your password?{" "}
-            <button className="text-link">Reset it here</button>
+            <Link to="/password-reset" className="text-link">
+              Reset it here
+            </Link>
           </p>
         ) : (
           <p className="footer-text">

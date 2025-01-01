@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { checkUser } from "../api";
+import "../styles/PasswordReset.css";
 
 export function PasswordReset() {
   const [email, setEmail] = useState("");
@@ -9,9 +10,10 @@ export function PasswordReset() {
   const [error, setError] = useState(null);
 
   async function checkingUser() {
+    console.log(email);
     try {
       const response = await checkUser(email);
-
+      console.log(response);
       if (response !== "User does exist") {
         setError("Please enter an existing email or create an account");
         setValidUser(false);
@@ -52,6 +54,7 @@ export function PasswordReset() {
       </div>
 
       <div className="reset-card">
+        <h1>Reset Password</h1>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Email</label>

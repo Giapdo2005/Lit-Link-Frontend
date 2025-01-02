@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { handleLogin, handleSignup } from "../api";
 import "../styles/Home.css";
 
 export function Home({ loggedIn }) {
+  const navigate = useNavigate();
+
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -21,6 +23,7 @@ export function Home({ loggedIn }) {
       const response = await handleLogin(email, password);
       console.log("Login successfully");
       loggedIn(response.id, response.fullname);
+      navigate("/dashboard");
     } catch (error) {
       console.error("onLogin -> error", error);
     }

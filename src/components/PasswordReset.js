@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { checkUser } from "../api";
+import { useNavigate } from "react-router-dom";
+import { checkUser, resetPassword } from "../api";
 import "../styles/PasswordReset.css";
 
 export function PasswordReset() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [validUser, setValidUser] = useState(false);
   const [password, setPassword] = useState("");
@@ -26,18 +29,25 @@ export function PasswordReset() {
     }
   }
 
-  async function resetPassword() {
-    setLoading(true);
-    setError(null);
+  async function onResetPassword() {
+    try {
+      setLoading(true);
+      setError(null);
 
-    //
+      const response = await resetPassword(email, password);
+      console.log(response);
+
+      navigate("/");
+    } catch (error) {
+      console.error("reset password failed");
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validUser) {
-      resetPassword(password);
+      onResetPassword(password);
     }
 
     checkingUser();

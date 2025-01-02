@@ -130,3 +130,16 @@ export const checkUser = async (email) => {
     console.error("checkUser -> not found", error.message);
   }
 };
+
+export const resetPassword = async (email, password) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/users/password-reset`, {
+      email,
+      password,
+    });
+
+    return response;
+  } catch (error) {
+    console.error("resetting Password -> unsuccessful");
+  }
+};

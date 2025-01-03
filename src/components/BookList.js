@@ -41,6 +41,9 @@ export function BookList({
                 read={read}
                 onBookStatusChange={(e) => onBookStatusChange(_id, e)}
                 onDeleteBook={() => onDeleteBook(_id)}
+                showDeleteButton={true}
+                showRating={true}
+                showStatus={true}
               />
             );
           })}

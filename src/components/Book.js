@@ -11,6 +11,9 @@ export function Book({
   onBookStatusChange,
   read,
   onDeleteBook,
+  showDeleteButton,
+  showRating,
+  showStatus,
 }) {
   const statusStyles = {
     0: "status-not-started",
@@ -67,23 +70,35 @@ export function Book({
           </div>
         </div>
         <div className="book-status">
-          <select
-            className={`book-status-select ${statusStyles[read]}`}
-            value={read}
-            onChange={onBookStatusChange}
-          >
-            <option value="0">Haven't Started</option>
-            <option value="1">In Progress</option>
-            <option value="2">Finished</option>
-          </select>
+          {showStatus ? (
+            <select
+              className={`book-status-select ${statusStyles[read]}`}
+              value={read}
+              onChange={onBookStatusChange}
+            >
+              <option value="0">Haven't Started</option>
+              <option value="1">In Progress</option>
+              <option value="2">Finished</option>
+            </select>
+          ) : (
+            <div>
+              {read === 0
+                ? "Haven't started"
+                : read === 1
+                ? "In Progress"
+                : "Finished"}
+            </div>
+          )}
         </div>
       </div>
       <div className="book-actions-container">
         <div className="book-actions">
-          <button className="book-delete" onClick={onDeleteBook}>
-            Delete Book
-          </button>
-          {read !== 0 && (
+          {showDeleteButton && (
+            <button className="book-delete" onClick={onDeleteBook}>
+              Delete Book
+            </button>
+          )}
+          {read !== 0 && showRating && (
             <button className="book-rate" onClick={onToggleRating}>
               {isRated === 1 ? "Edit Rating" : "Rate It"}
             </button>

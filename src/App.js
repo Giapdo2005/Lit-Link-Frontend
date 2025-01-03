@@ -7,6 +7,8 @@ import { FriendList } from "./components/FriendList";
 import { Home } from "./components/Home";
 import { UserList } from "./components/UserList";
 import { PasswordReset } from "./components/PasswordReset";
+import { FriendProfile } from "./components/FriendsProfile";
+import { useNavigate } from "react-router-dom";
 import {
   fetchBooks,
   fetchUsers,
@@ -15,6 +17,7 @@ import {
   deleteSelectedBook,
   addFriend,
   deleteFriend,
+  getUserData,
 } from "./api";
 import "./styles/Index.css";
 
@@ -25,6 +28,10 @@ export default function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [name, setName] = useState("");
   const [users, setUsers] = useState([]);
+  const [profile, setProfile] = useState(null);
+  const [profileFriends, setProfileFriends] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadBooksandUsers = async () => {
@@ -147,41 +154,57 @@ export default function App() {
     }
   }
 
+  async function onHandleViewProfile(user) {
+    console.log("clicked");
+    console.log(user);
+    const userData = await getUserData(user._id);
+    console.log(userData);
+    setProfile(userData);
+    console.log(profile.name);
+    navigate("/friends-profile");
+  }
+
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home loggedIn={onLoggedIn} />} />
-          <Route path="/password-reset" element={<PasswordReset />} />
-          <Route
-            path="/dashboard"
-            element={
-              loggedInUser ? (
-                <>
-                  <Header onLogout={onLogout} loggedInUser={name} />
-                  <AddBookForm onAddBook={onAddBook} />
-                  <BookList
-                    books={books}
-                    status={selectStatus}
-                    onBookStatusChange={handleBookStatusChange}
-                    onFilterBooks={handleFilterBooks}
-                    onDeleteBook={handleDeleteBook}
-                    loggedInUser={name}
-                  />
-                  <FriendList
-                    friends={friends}
-                    loggedInUser={name}
-                    onDeleteFriend={onDeleteFriend}
-                  />
-                  <UserList users={users} onAddFriend={onAddFriend} />
-                </>
-              ) : (
-                <Home loggedIn={onLoggedIn} />
-              )
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home loggedIn={onLoggedIn} />} />
+        <Route path="/password-reset" element={<PasswordReset />} />
+        <Route
+          path="/dashboard"
+          element={
+            loggedInUser ? (
+              <>
+                <Header onLogout={onLogout} loggedInUser={name} />
+                <AddBookForm onAddBook={onAddBook} />
+                <BookList
+                  books={books}
+                  status={selectStatus}
+                  onBookStatusChange={handleBookStatusChange}
+                  onFilterBooks={handleFilterBooks}
+                  onDeleteBook={handleDeleteBook}
+                  loggedInUser={name}
+                />
+                <FriendList
+                  friends={friends}
+                  loggedInUser={name}
+                  onDeleteFriend={onDeleteFriend}
+                />
+                <UserList
+                  users={users}
+                  onAddFriend={onAddFriend}
+                  viewProfile={onHandleViewProfile}
+                />
+              </>
+            ) : (
+              <Home loggedIn={onLoggedIn} />
+            )
+          }
+        />
+        <Route
+          path="/friends-profile"
+          element={<FriendProfile loggedInUser={name} user={profile} />}
+        />
+      </Routes>
+    </div>
   );
 }

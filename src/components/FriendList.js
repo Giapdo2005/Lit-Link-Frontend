@@ -2,7 +2,6 @@ import { Friend } from "./Friend";
 import "../styles/FriendList.css";
 
 export function FriendList({ friends, loggedInUser, onDeleteFriend }) {
-  console.log(friends);
   return (
     <div className="friend-list-container">
       <h2 className="friend-list-title">My Reading Friends</h2>

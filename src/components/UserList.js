@@ -1,7 +1,7 @@
 import { User } from "./User";
 import "../styles/UserList.css";
 
-export function UserList({ users, onAddFriend }) {
+export function UserList({ users, onAddFriend, viewProfile }) {
   return (
     <div className="user-list-container">
       <div className="user-list-header">
@@ -27,6 +27,7 @@ export function UserList({ users, onAddFriend }) {
               name={user.fullname}
               books={user.books}
               onAddFriend={() => onAddFriend(user._id)}
+              viewProfile={() => viewProfile(user)}
             />
           </li>
         ))}

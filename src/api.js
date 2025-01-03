@@ -143,3 +143,14 @@ export const resetPassword = async (email, password) => {
     console.error("resetting Password -> unsuccessful");
   }
 };
+
+// get user info from id
+export const getUserData = async (id) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/users/${id}`);
+
+    return response.data.user;
+  } catch (error) {
+    console.error("couldn't retrieve userData");
+  }
+};

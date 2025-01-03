@@ -8,7 +8,7 @@ export function Friend({ name, books, deleteFriend }) {
   return (
     <div className="user-card">
       <div className="user-header">
-        <div className="user-avatar">{name.charAt(0)}</div>
+        <div className="user-avatar">1</div>
         <div className="user-info">
           <h3 className="user-name">{name}</h3>
           <span className="books-count">{books.length} books</span>

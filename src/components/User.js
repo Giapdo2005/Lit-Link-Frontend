@@ -1,6 +1,6 @@
 import "../styles/User.css";
 
-export function User({ name, books, onAddFriend }) {
+export function User({ name, books, onAddFriend, viewProfile }) {
   const latestBooks = books
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(-3);
@@ -26,7 +26,9 @@ export function User({ name, books, onAddFriend }) {
       </div>
 
       <div className="user-actions">
-        <button className="view-profile">View Profile</button>
+        <button className="view-profile" onClick={viewProfile}>
+          View Profile
+        </button>
         <button className="add-friend" onClick={onAddFriend}>
           Add Friend
         </button>

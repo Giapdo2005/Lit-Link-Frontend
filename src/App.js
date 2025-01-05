@@ -29,7 +29,7 @@ export default function App() {
   const [name, setName] = useState("");
   const [users, setUsers] = useState([]);
   const [profile, setProfile] = useState(null);
-  const [profileFriends, setProfileFriends] = useState([]);
+  const [isAlreadyFriend, setIsAlreadyFriend] = useState(false);
 
   const navigate = useNavigate();
 
@@ -155,12 +155,15 @@ export default function App() {
   }
 
   async function onHandleViewProfile(user) {
-    console.log("clicked");
     console.log(user);
     const userData = await getUserData(user._id);
-    console.log(userData);
     setProfile(userData);
-    console.log(profile.name);
+    if (friends.some((friend) => friend._id === user._id)) {
+      setIsAlreadyFriend(true);
+    } else {
+      setIsAlreadyFriend(false);
+    }
+
     navigate("/friends-profile");
   }
 
@@ -202,7 +205,13 @@ export default function App() {
         />
         <Route
           path="/friends-profile"
-          element={<FriendProfile loggedInUser={name} user={profile} />}
+          element={
+            <FriendProfile
+              loggedInUser={name}
+              user={profile}
+              showAddFriend={isAlreadyFriend ? false : true}
+            />
+          }
         />
       </Routes>
     </div>

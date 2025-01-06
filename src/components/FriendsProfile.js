@@ -4,8 +4,14 @@ import { Friend } from "./Friend";
 import { useNavigate } from "react-router-dom";
 import "../styles/FriendProfile.css";
 
-export function FriendProfile({ loggedInUser, user, showAddFriend }) {
+export function FriendProfile({
+  loggedInUser,
+  user,
+  showAddFriend,
+  addFriend,
+}) {
   const navigate = useNavigate();
+  console.log(user.id);
 
   function onReturnHome() {
     navigate("/dashboard");
@@ -23,7 +29,12 @@ export function FriendProfile({ loggedInUser, user, showAddFriend }) {
           </button>
           <h1 className="friend-profile-title">{`${user.name}'s Books`}</h1>
           {showAddFriend && (
-            <button className="add-friend-button">Add Friend</button>
+            <button
+              className="add-friend-button"
+              onClick={() => addFriend(user.id)}
+            >
+              Add Friend
+            </button>
           )}
         </div>
         <div className="friend-profile-book-grid">

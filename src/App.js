@@ -126,6 +126,7 @@ export default function App() {
   }
 
   async function onAddFriend(friendId) {
+    console.log("clicked");
     try {
       const newFriend = await addFriend(loggedInUser, friendId);
       setFriends((prevFriends) => [...prevFriends, newFriend]);
@@ -157,6 +158,7 @@ export default function App() {
   async function onHandleViewProfile(user) {
     console.log(user);
     const userData = await getUserData(user._id);
+    console.log(userData);
     setProfile(userData);
     if (friends.some((friend) => friend._id === user._id)) {
       setIsAlreadyFriend(true);
@@ -191,6 +193,7 @@ export default function App() {
                   friends={friends}
                   loggedInUser={name}
                   onDeleteFriend={onDeleteFriend}
+                  viewProfile={onHandleViewProfile}
                 />
                 <UserList
                   users={users}
@@ -210,6 +213,7 @@ export default function App() {
               loggedInUser={name}
               user={profile}
               showAddFriend={isAlreadyFriend ? false : true}
+              addFriend={onAddFriend}
             />
           }
         />

@@ -9,6 +9,7 @@ export function FriendProfile({
   user,
   showAddFriend,
   addFriend,
+  onLogout,
 }) {
   const navigate = useNavigate();
   console.log(user.id);
@@ -19,7 +20,7 @@ export function FriendProfile({
   return (
     <>
       <div className="header-wrapper">
-        <Header loggedInUser={loggedInUser} />
+        <Header loggedInUser={loggedInUser} onLogout={onLogout} />
       </div>
 
       <div className="friend-profile-container">

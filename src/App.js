@@ -123,6 +123,7 @@ export default function App() {
 
   function onLogout() {
     setLoggedInUser(null);
+    navigate("/");
   }
 
   async function onAddFriend(friendId) {
@@ -214,6 +215,7 @@ export default function App() {
               user={profile}
               showAddFriend={isAlreadyFriend ? false : true}
               addFriend={onAddFriend}
+              onLogout={onLogout}
             />
           }
         />

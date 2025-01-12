@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = "https://lit-link-backend-4.onrender.com/api";
+const API_BASE_TEST = "http://localhost:3000/api";
 
 // get all books from database
 export const fetchBooks = async (id) => {
@@ -152,5 +153,15 @@ export const getUserData = async (id) => {
     return response.data.user;
   } catch (error) {
     console.error("couldn't retrieve userData");
+  }
+};
+
+// search users
+export const searchUser = async (name) => {
+  try {
+    const response = await axios.get(`${API_BASE_TEST}/search-users?q=${name}`);
+    return response.data;
+  } catch (error) {
+    console.error("Couldn't search user", error);
   }
 };

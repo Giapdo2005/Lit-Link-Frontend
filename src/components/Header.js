@@ -12,8 +12,6 @@ export function Header({ onLogout, loggedInUser }) {
           <h2>{`Welcome back ${loggedInUser}`}</h2>
         </div>
         <nav className="nav-links">
-          <button className="nav-button">My Books</button>
-          <button className="nav-button">Friends</button>
           <button className="nav-button primary" onClick={onLogout}>
             Log Out
           </button>

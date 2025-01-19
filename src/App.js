@@ -91,13 +91,14 @@ export default function App() {
     console.log(bookId);
 
     try {
-      await updateBookStatus(loggedInUser, bookId, newState);
+      const response = await updateBookStatus(loggedInUser, bookId, newState);
       setBooks((prevBooks) =>
         prevBooks.map((book) =>
           book._id === bookId ? { ...book, read: newState } : book
         )
       );
-      console.log(newState);
+      console.log(books);
+      console.log(response);
     } catch (error) {
       console.error("handleBookStatusChange -> error", error);
     }

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = "https://lit-link-backend-4.onrender.com/api";
+const API_LOCAL_URL = "http://localhost:3000/api";
 
 // get all books from database
 export const fetchBooks = async (id) => {
@@ -40,7 +41,7 @@ export const addBook = async (id, bookData) => {
 export const updateBookStatus = async (userId, bookId, status) => {
   try {
     const response = await axios.put(
-      `${API_BASE_URL}/users/${userId}/books/${bookId}`,
+      `${API_LOCAL_URL}/users/${userId}/books/${bookId}`,
       {
         read: status,
       }

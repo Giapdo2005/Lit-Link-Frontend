@@ -202,6 +202,7 @@ export default function App() {
                   onAddFriend={onAddFriend}
                   viewProfile={onHandleViewProfile}
                   loggedInUser={loggedInUser}
+                  friends={friends}
                 />
               </>
             ) : (

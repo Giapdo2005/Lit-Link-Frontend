@@ -4,10 +4,18 @@ import { searchUser } from "../api";
 import "../styles/UserList.css";
 import { filter } from "lodash";
 
-export function UserList({ users, onAddFriend, viewProfile, loggedInUser }) {
+export function UserList({
+  users,
+  onAddFriend,
+  viewProfile,
+  loggedInUser,
+  friends,
+}) {
   const [queries, setQueries] = useState("");
   const [filteredUsers, setFilteredUsers] = useState(users);
   const [loading, setLoading] = useState(false);
+
+  console.log(friends);
 
   useEffect(() => {
     if (!queries) {
@@ -19,9 +27,11 @@ export function UserList({ users, onAddFriend, viewProfile, loggedInUser }) {
       setLoading(true);
       try {
         const users = await searchUser(queries);
-        console.log("Search results:", users);
-        console.log(loggedInUser);
-        const filtered = users.filter((user) => user._id !== loggedInUser);
+        const friendIds = friends.map((friend) => friend._id);
+        console.log(friendIds);
+        const filtered = users.filter(
+          (user) => user._id !== loggedInUser && !friendIds.includes(user._id)
+        );
         setFilteredUsers(filtered);
       } catch (error) {
         console.error("searching -> failed", error.message);
